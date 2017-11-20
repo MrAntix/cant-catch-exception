@@ -1,5 +1,6 @@
 using System;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace SmtpClient.CantCatchException
@@ -9,7 +10,7 @@ namespace SmtpClient.CantCatchException
         public const int NO_SERVER_PORT = 26;
 
         [Fact]
-        public void when_no_server()
+        public async Task when_no_server()
         {
             try
             {
@@ -20,7 +21,7 @@ namespace SmtpClient.CantCatchException
                         "Message Subject",
                         "Message Body");
 
-                    smtp.SendMailAsync(message);
+                   await smtp.SendMailAsync(message);
                 }
             }
             catch (Exception)
